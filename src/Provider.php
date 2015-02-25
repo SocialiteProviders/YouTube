@@ -17,7 +17,9 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('https://accounts.google.com/o/oauth2/auth', $state);
+        return $this->buildAuthUrlFromBase(
+            'https://accounts.google.com/o/oauth2/auth', $state
+        );
     }
 
     /**
@@ -33,7 +35,8 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get('https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true', [
+        $response = $this->getHttpClient()->get(
+            'https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true', [
             'headers' => [
                 'Authorization' => 'Bearer '.$token,
             ],
@@ -48,11 +51,9 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected function mapUserToObject(array $user)
     {
         return (new User())->setRaw($user)->map([
-            'id'       => $user['id'],
-            'nickname' => $user['snippet']['title'],
-            'name'     => null,
-            'email'    => null,
-            'avatar'   => $user['snippet']['thumbnails']['high']['url'],
+            'id' => $user['id'], 'nickname' => $user['snippet']['title'],
+            'name' => null, 'email' => null,
+            'avatar' => $user['snippet']['thumbnails']['high']['url'],
         ]);
     }
 
@@ -61,7 +62,9 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenFields($code)
     {
-        return array_merge(parent::getTokenFields($code), ['grant_type' => 'authorization_code']);
+        return array_merge(parent::getTokenFields($code), [
+            'grant_type' => 'authorization_code',
+        ]);
     }
 
     /**
