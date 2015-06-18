@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialiteProviders\YouTube;
 
 use Laravel\Socialite\Two\AbstractProvider;
@@ -42,7 +43,7 @@ class Provider extends AbstractProvider implements ProviderInterface
             ],
         ]);
 
-        return json_decode($response->getBody(), true)['items'][0];
+        return json_decode($response->getBody()->getContents(), true)['items'][0];
     }
 
     /**

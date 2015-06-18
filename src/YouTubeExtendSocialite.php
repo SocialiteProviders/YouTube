@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialiteProviders\YouTube;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;
