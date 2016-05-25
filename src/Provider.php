@@ -17,6 +17,11 @@ class Provider extends AbstractProvider implements ProviderInterface
      * {@inheritdoc}
      */
     protected $scopes = ['https://www.googleapis.com/auth/youtube.readonly'];
+    
+    /**
+     * {@inheritdoc}
+     */
+    protected $scopeSeparator = ' ';
 
     /**
      * {@inheritdoc}
