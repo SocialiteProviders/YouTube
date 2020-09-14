@@ -54,6 +54,16 @@ class Provider extends AbstractProvider
                 ],
             ]
         );
+        
+        $contents = json_decode($response->getBody()->getContents(), true);
+        
+        if(!isset($contents['items'])) {
+           throw new \Exception('The channel you selected is not a valid channel..', 404);   
+        }
+        
+        if(empty($contents['items'])) {
+           throw new \Exception('The channel you selected is not found on YouTube.', 404);   
+        }
 
         return json_decode($response->getBody()->getContents(), true)['items'][0];
     }
