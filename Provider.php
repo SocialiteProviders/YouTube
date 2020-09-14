@@ -65,7 +65,7 @@ class Provider extends AbstractProvider
            throw new \Exception('The channel you selected is not found on YouTube.', 404);   
         }
 
-        return json_decode($response->getBody()->getContents(), true)['items'][0];
+        return $contents['items'][0];
     }
 
     /**
